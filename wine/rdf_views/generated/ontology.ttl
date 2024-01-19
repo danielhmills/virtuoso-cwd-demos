@@ -1,0 +1,217 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix aowl: <http://bblfish.net/work/atom-owl/2006-06-06/> .
+@prefix virtrdf: <http://www.openlinksw.com/schemas/virtrdf#> .
+@prefix gql: <http://www.openlinksw.com/schemas/graphql#> .
+@prefix spider-wines: <http://demo.openlinksw.com/schemas/spider-wines/> .
+
+spider-wines: a owl:Ontology .
+
+# spider.wine.appellations
+
+gql:appellations gql:type gql:Array;
+  gql:rdfClass spider-wines:appellations .
+
+gql:appellationsObject gql:type gql:Object;
+  gql:rdfClass spider-wines:appellations .
+
+spider-wines:appellations a rdfs:Class ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:appellations ;
+  rdfs:label "spider.wine.appellations" .
+
+spider-wines:no a owl:DatatypeProperty ;
+  rdfs:range xsd:int ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:appellations ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:no ;
+  rdfs:label "No" .
+
+spider-wines:appelation a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:appellations ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:appelation ;
+  rdfs:label "Appelation" .
+
+spider-wines:county a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:appellations ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:county ;
+  rdfs:label "County" .
+
+spider-wines:state a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:appellations ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:state ;
+  rdfs:label "State" .
+
+spider-wines:area a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:appellations ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:area ;
+  rdfs:label "Area" .
+
+spider-wines:isava a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:appellations ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:isava ;
+  rdfs:label "isAVA" .
+
+
+# spider.wine.grapes
+
+gql:grapes gql:type gql:Array;
+  gql:rdfClass spider-wines:grapes .
+
+gql:grapesObject gql:type gql:Object;
+  gql:rdfClass spider-wines:grapes .
+
+spider-wines:grapes a rdfs:Class ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:grapes ;
+  rdfs:label "spider.wine.grapes" .
+
+spider-wines:id a owl:DatatypeProperty ;
+  rdfs:range xsd:int ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:grapes ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:id ;
+  rdfs:label "ID" .
+
+spider-wines:grape a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:grapes ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:grape ;
+  rdfs:label "Grape" .
+
+spider-wines:color a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:grapes ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:color ;
+  rdfs:label "Color" .
+
+
+# spider.wine.wine
+
+gql:wine gql:type gql:Array;
+  gql:rdfClass spider-wines:wine .
+
+gql:wineObject gql:type gql:Object;
+  gql:rdfClass spider-wines:wine .
+
+spider-wines:wine a rdfs:Class ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:wine ;
+  rdfs:label "spider.wine.wine" .
+
+spider-wines:no a owl:DatatypeProperty ;
+  rdfs:range xsd:int ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:no ;
+  rdfs:label "No" .
+
+spider-wines:grape a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:grape ;
+  rdfs:label "Grape" .
+
+spider-wines:winery a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:winery ;
+  rdfs:label "Winery" .
+
+spider-wines:appelation a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:appelation ;
+  rdfs:label "Appelation" .
+
+spider-wines:state a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:state ;
+  rdfs:label "State" .
+
+spider-wines:name a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:name ;
+  rdfs:label "Name" .
+
+spider-wines:year a owl:DatatypeProperty ;
+  rdfs:range xsd:int ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:year ;
+  rdfs:label "Year" .
+
+spider-wines:price a owl:DatatypeProperty ;
+  rdfs:range xsd:int ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:price ;
+  rdfs:label "Price" .
+
+spider-wines:score a owl:DatatypeProperty ;
+  rdfs:range xsd:int ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:score ;
+  rdfs:label "Score" .
+
+spider-wines:cases a owl:DatatypeProperty ;
+  rdfs:range xsd:int ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:cases ;
+  rdfs:label "Cases" .
+
+spider-wines:drink a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  gql:type gql:Scalar ;
+  rdfs:domain spider-wines:wine ;
+  rdfs:isDefinedBy spider-wines: ;
+  gql:field gql:drink ;
+  rdfs:label "Drink" .
+
+
+
+gql:Map gql:dataGraph <http://demo.openlinksw.com/spider-wines#> ;
+  gql:schemaGraph spider-wines: ;
+  gql:schemaObjects gql:appellations, gql:grapes, gql:wine.

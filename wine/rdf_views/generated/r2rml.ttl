@@ -1,0 +1,37 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix spider-wines: <http://demo.openlinksw.com/schemas/spider-wines/> .
+@prefix spider-wines-stat: <http://demo.openlinksw.com/spider-wines/stat#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix scovo: <http://purl.org/NET/scovo#> .
+@prefix aowl: <http://bblfish.net/work/atom-owl/2006-06-06/> .
+
+
+<#TriplesMapappellations> a rr:TriplesMap; rr:logicalTable [ rr:tableSchema "spider" ; rr:tableOwner "wine" ; rr:tableName "appellations" ]; 
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/appellations/No/{No}#this"; rr:class spider-wines:appellations; rr:graph <http://demo.openlinksw.com/spider-wines#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:no ] ; rr:objectMap [ rr:column "No" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:appelation ] ; rr:objectMap [ rr:column "Appelation" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:county ] ; rr:objectMap [ rr:column "County" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:state ] ; rr:objectMap [ rr:column "State" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:area ] ; rr:objectMap [ rr:column "Area" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:isava ] ; rr:objectMap [ rr:column "isAVA" ]; ] .
+
+<#TriplesMapgrapes> a rr:TriplesMap; rr:logicalTable [ rr:tableSchema "spider" ; rr:tableOwner "wine" ; rr:tableName "grapes" ]; 
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/grapes/ID/{ID}#this"; rr:class spider-wines:grapes; rr:graph <http://demo.openlinksw.com/spider-wines#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:id ] ; rr:objectMap [ rr:column "ID" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:grape ] ; rr:objectMap [ rr:column "Grape" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:color ] ; rr:objectMap [ rr:column "Color" ]; ] .
+
+<#TriplesMapwine> a rr:TriplesMap; rr:logicalTable [ rr:tableSchema "spider" ; rr:tableOwner "wine" ; rr:tableName "wine" ]; 
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/No/{No}#this"; rr:class spider-wines:wine; rr:graph <http://demo.openlinksw.com/spider-wines#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:no ] ; rr:objectMap [ rr:column "No" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:grape ] ; rr:objectMap [ rr:column "Grape" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:winery ] ; rr:objectMap [ rr:column "Winery" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:appelation ] ; rr:objectMap [ rr:column "Appelation" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:state ] ; rr:objectMap [ rr:column "State" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:name ] ; rr:objectMap [ rr:column "Name" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:year ] ; rr:objectMap [ rr:column "Year" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:price ] ; rr:objectMap [ rr:column "Price" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:score ] ; rr:objectMap [ rr:column "Score" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:cases ] ; rr:objectMap [ rr:column "Cases" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:drink ] ; rr:objectMap [ rr:column "Drink" ]; ] .
