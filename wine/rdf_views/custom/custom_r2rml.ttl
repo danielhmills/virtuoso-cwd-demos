@@ -1,0 +1,72 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix spider-wines: <http://www.openlinksw.com/ontology/spider-wine#> .
+@prefix spider-wines-stat: <http://demo.openlinksw.com/spider-wines/stat#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix scovo: <http://purl.org/NET/scovo#> .
+@prefix aowl: <http://bblfish.net/work/atom-owl/2006-06-06/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+<#TriplesMapappellations> a rr:TriplesMap; 
+#rr:logicalTable [ rr:tableSchema "spider" ; rr:tableOwner "wine" ; rr:tableName "appellations" ]; 
+rr:logicalTable [rr:sqlQuery """SELECT REPLACE(Appelation,' ','') as Appelation_URI, Appelation, REPLACE(County, ' ','') as County, REPLACE(State, ' ','') as State, REPLACE(Area, ' ','') as Area, CASE WHEN isAVA = 'Yes' THEN 'true' ELSE 'false' END as isAVA FROM spider.wine.appellations"""];
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/appellation/{Appelation_URI}#this"; rr:class spider-wines:Appellation; rr:graph <http://demo.openlinksw.com/spider-wines-custom#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant rdfs:label ] ; rr:objectMap [ rr:column "Appelation" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:inCounty ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/county/{County}#this"]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:inState ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/state/{State}#this"]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:inArea ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/area/{Area}#this"]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:isAVA ] ; rr:objectMap [ rr:datatype xsd:boolean; rr:column "isAVA" ]; ] .
+
+<#TriplesMapState> a rr:TriplesMap; 
+rr:logicalTable [rr:sqlQuery """SELECT DISTINCT REPLACE(State,' ','') as State FROM spider.wine.appellations"""];
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/state/{State}#this"; rr:class spider-wines:State; rr:graph <http://demo.openlinksw.com/spider-wines-custom#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant rdfs:label ] ; rr:objectMap [ rr:column "State" ]; ].
+
+<#TriplesMapCounty> a rr:TriplesMap; 
+rr:logicalTable [rr:sqlQuery """SELECT DISTINCT REPLACE(State,' ','')as State, REPLACE(County,' ','') as County FROM spider.wine.appellations"""];
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/county/{County}#this"; rr:class spider-wines:County; rr:graph <http://demo.openlinksw.com/spider-wines-custom#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant rdfs:label ] ; rr:objectMap [ rr:column "County" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:inState ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/state/{State}#this"]; ] .
+
+<#TriplesMapArea> a rr:TriplesMap; 
+rr:logicalTable [rr:sqlQuery """SELECT DISTINCT REPLACE(State,' ','') as State, REPLACE(County,' ','') as County, REPLACE(Area,' ','') as Area_URI, Area FROM spider.wine.appellations"""];
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/area/{Area_URI}#this"; rr:class spider-wines:Area; rr:graph <http://demo.openlinksw.com/spider-wines-custom#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant rdfs:label ] ; rr:objectMap [ rr:column "Area" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:inState ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/state/{State}#this"]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:inCounty ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/county/{County}#this"]; ] .
+
+<#TriplesMapGrape> a rr:TriplesMap; 
+rr:logicalTable [ rr:sqlQuery """SELECT DISTINCT REPLACE(Grape, ' ','') as Grape, Color from spider.wine.grapes""" ]; 
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/grape/{Grape}#this"; rr:class spider-wines:Grape; rr:graph <http://demo.openlinksw.com/spider-wines-custom#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant rdfs:label ] ; rr:objectMap [ rr:column "Grape" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasGrapeColor ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/grape-color/{Color}#this"]; ] .
+
+
+<#TriplesMapGrapeColor> a rr:TriplesMap; 
+rr:logicalTable [ rr:sqlQuery """SELECT DISTINCT Color from spider.wine.grapes""" ]; 
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/grape-color/{Color}#this"; rr:class spider-wines:GrapeColor; rr:graph <http://demo.openlinksw.com/spider-wines-custom#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant rdfs:label ] ; rr:objectMap [ rr:column "Color" ]; ].
+
+
+<#TriplesMapwine> a rr:TriplesMap; 
+#rr:logicalTable [ rr:tableSchema "spider" ; rr:tableOwner "wine" ; rr:tableName "wine" ]; 
+rr:logicalTable [rr:sqlQuery "SELECT NO, REPLACE(Grape,' ','') as Grape, REPLACE(Winery,' ','') as Winery, REPLACE(Appelation,' ','') as Appelation, REPLACE(State,' ','') as State, Name, Year as _Year, Price, Score, Cases, Drink FROM spider.wine.wine "];
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/{No}#this"; rr:class spider-wines:Wine; rr:graph <http://demo.openlinksw.com/spider-wines-custom#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant rdfs:label ] ; rr:objectMap [ rr:datatype xsd:string; rr:column "Name" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasGrape ] ; rr:objectMap [ rr:termType: rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/grape/{Grape}#this" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasWinery ] ; rr:objectMap [ rr:termType: rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/winery/{Winery}#this" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasAppellation ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/appellation/{Appelation}#this" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:inState ] ; rr:objectMap [ rr:termType rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/state/{State}#this" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasWineYear ] ; rr:objectMap [ rr:datatype xsd:integer; rr:column "_Year" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasWinePrice ] ; rr:objectMap [ rr:datatype xsd:integer; rr:column "Price" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasWineReviewScore ] ; rr:objectMap [ rr:datatype xsd:integer; rr:column "Score" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasCases ] ; rr:objectMap [ rr:datatype xsd:integer; rr:column "Cases" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasDrinkTime ] ; rr:objectMap [ rr:column "Drink" ]; ] .
+
+
+<#TriplesMapwinery> a rr:TriplesMap; 
+#rr:logicalTable [ rr:tableSchema "spider" ; rr:tableOwner "wine" ; rr:tableName "wine" ]; 
+rr:logicalTable [rr:sqlQuery "SELECT REPLACE(Winery,' ','') as Winery_URI, Winery, REPLACE(Name,' ','') as Name FROM spider.wine.wine "];
+rr:subjectMap [ rr:termType rr:IRI  ; rr:template "http://demo.openlinksw.com/spider/wine/winery/{Winery_URI}#this"; rr:class spider-wines:Winery; rr:graph <http://demo.openlinksw.com/spider-wines-custom#> ];
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant rdfs:label ] ; rr:objectMap [ rr:datatype xsd:string; rr:column "Winery" ]; ] ;
+rr:predicateObjectMap [ rr:predicateMap [ rr:constant spider-wines:hasWine ] ; rr:objectMap [ rr:termType: rr:IRI; rr:template "http://demo.openlinksw.com/spider/wine/{Name}#this" ]; ] .

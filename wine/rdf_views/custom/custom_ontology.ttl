@@ -1,0 +1,137 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix spider-wines: <http://www.openlinksw.com/ontology/spider-wine#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+### Classes
+
+spider-wines:Place a rdf:Class;
+rdfs:label "Place".
+
+spider-wines:Appellation a rdf:Class;
+rdfs:label "Appellation";
+rdfs:subClassof spider-wines:Place.
+
+spider-wines:State a rdf:Class;
+rdfs:label "State";
+rdfs:subClassof spider-wines:Place.
+
+spider-wines:Area a rdf:Class;
+rdfs:label "Area";
+rdfs:subClassof spider-wines:Place.
+
+spider-wines:County a rdf:Class;
+rdfs:label "County";
+rdfs:subClassof spider-wines:Place.
+
+spider-wines:Grape a rdf:Class;
+rdfs:label "Grape".
+
+spider-wines:GrapeColor a rdf:Class;
+rdfs:label "GrapeColor".
+
+spider-wines:Wine a rdf:Class;
+rdfs:label "Wine".
+
+spider-wines:Winery a rdf:Class;
+rdfs:label "Winery".
+
+### Properties
+
+spider-wines:inState
+a rdf:Property,
+  owl:ObjectProperty;
+rdfs:label "in state";
+rdfs:domain spider-wines:Place ;
+rdfs:range spider-wines:State .
+
+spider-wines:inArea
+a rdf:Property,
+  owl:ObjectProperty;
+rdfs:label "in area";
+rdfs:domain spider-wines:Appellation ;
+rdfs:range spider-wines:Area .
+
+spider-wines:inCounty
+a rdf:Property,
+  owl:ObjectProperty;
+rdfs:label "in county";
+rdfs:domain spider-wines:Place ;
+rdfs:range spider-wines:County .
+
+spider-wines:hasAppellation
+a rdf:Property,
+  owl:ObjectProperty;
+rdfs:label "has appellation";
+rdfs:domain spider-wines:Wine ;
+rdfs:range spider-wines:Appellation .
+
+spider-wines:hasGrape
+a rdf:Property,
+  owl:ObjectProperty;
+rdfs:label "has grape";
+rdfs:domain spider-wines:Wine ;
+rdfs:range spider-wines:Grape .
+
+spider-wines:hasGrapeColor
+a rdf:Property,
+  owl:ObjectProperty;
+rdfs:label "has grape color";
+rdfs:domain spider-wines:Grape ;
+rdfs:range spider-wines:GrapeColor .
+
+spider-wines:hasWinery
+a rdf:Property,
+  owl:ObjectProperty;
+rdfs:label "has winery";
+rdfs:domain spider-wines:Wine ;
+rdfs:range spider-wines:Winery .
+
+spider-wines:hasWine
+a rdf:Property,
+  owl:ObjectProperty;
+rdfs:label "has winery";
+rdfs:domain spider-wines:Winery ;
+rdfs:range spider-wines:Wine .
+
+spider-wines:isAVA
+a rdf:Property, 
+      owl:FunctionalProperty;
+rdfs:label "is AVA";
+rdfs:domain spider-wines:Appellation ;
+rdfs:range xsd:boolean .
+
+spider-wines:hasWinePrice
+a rdf:Property, 
+      owl:DatatypeProperty;
+rdfs:label "has wine price";
+rdfs:domain spider-wines:Wine ;
+rdfs:range xsd:integer .
+
+spider-wines:hasWineReviewScore
+a rdf:Property, 
+      owl:DatatypeProperty;
+rdfs:label "has wine review score";
+rdfs:domain spider-wines:Wine ;
+rdfs:range xsd:integer .
+
+spider-wines:hasWineYear
+a rdf:Property, 
+      owl:DatatypeProperty;
+rdfs:label "has wine year";
+rdfs:domain spider-wines:Wine ;
+rdfs:range xsd:integer .
+
+spider-wines:hasCases
+a rdf:Property, 
+      owl:DatatypeProperty;
+rdfs:label "has cases";
+rdfs:domain spider-wines:Wine ;
+rdfs:range xsd:integer .
+
+spider-wines:hasDrinkTime
+a rdf:Property, 
+      owl:DatatypeProperty;
+rdfs:label "has drink time";
+rdfs:domain spider-wines:Wine ;
+rdfs:range xsd:string .
