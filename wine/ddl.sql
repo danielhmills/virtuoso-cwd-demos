@@ -14,7 +14,7 @@ CREATE TABLE spider.wine.appellations (
 );
 
 CREATE TABLE spider.wine.wine ( 
-	"No" INTEGER, 
+	"No" INTEGER PRIMARY KEY IDENTITY, 
 	"Grape" VARCHAR, 
 	"Winery" VARCHAR, 
 	"Appelation" VARCHAR, 
